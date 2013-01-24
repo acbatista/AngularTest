@@ -1,32 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt" ng-app>
 	<head>
 		<meta charset="utf-8">
-		<script type="text/javascript" src="js/angular.min.js"></script>
-		<script type="text/javascript" src="js/core.js"></script>
-		<title></title>
+		<script src="lib/angular.min.js"></script>
+		<script src="app/lista-compras.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/lista-compras.css">
+		<title>Lista de Compras com Framework AngularJs</title>
 	</head>
 	<body>
-		<div ng-controller="ListaComprasController">
-			<table>
+		<div class="container" ng-controller="ListaComprasController">
+			<div class="row">
+				<div class="page-header">
+					<h1>Lista de Compras</h1>
+				</div>
+			</div>
+		<div class="row">
+			<table id="lista-compras" class="table table-striped">
 				<thead>
 					<tr>
-						<th>Produtos</th>
+						<th>Comprado</th>
+						<th>Produto</th>
 						<th>Quantidade</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="item in itens">
+					<tr ng-repeat="item in itens" class="comprado-{{ item.comprado}}">
+						<td><input type="checkbox" ng-model="item.comprado"></td>
 						<td><strong>{{ item.produto}}</strong></td>
-						<td>{{ intem.quantidade}}</td>
+						<td>{{ item.quantidade}}</td>
 					</tr>
 				</tbody>
 			</table>
+			
 		</div>
-		<form class="form-inline" name="formItem">
-			<input type="text" ng-model="item.produto">
-			<input type="number" ng-model="intem.quantidade">
-			<button ng-click="adicionaItem()">adicionar ítem</button>
-		</form>
+
+		<div class="row">
+			<form class="form-inline" name="formItem">
+				<input type="text" ng-model="item.produto" placeholder="Produto">
+				<input type="number" ng-model="item.quantidade" palceholder="Quantidade" class="input-small">
+				<button class="btn btn-primary" ng-click="adicionaItem()">adicionar ítem</button>
+			</form>
+		</div>
 	</body>
 </html>
